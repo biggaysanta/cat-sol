@@ -1,0 +1,14 @@
+{{/* glass.html
+this partial wraps whatever passed content in the glass effect */}}
+
+<div class="glass-wrapper">
+  <div class="glass-low-light">
+    <div class="glass-dim-light">
+      <div class="glass-mid-light">
+        <div class="p-2 glass-key-light">
+          {{ . | safeHTML }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

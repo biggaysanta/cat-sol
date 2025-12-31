@@ -1,0 +1,8 @@
+<!-- @format 
+    
+    layouts/shortcodes/placeholder.html 
+
+calls placeholder partial with supplied dimensions
+-->
+
+{{ partial "placeholder.html" (dict "width" (.Get "width") "height" (.Get "height")) }}

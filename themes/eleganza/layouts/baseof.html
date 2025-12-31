@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    {{ partial "head.html" . }}
+  </head>
+  <body class="bg-midnight p-4">
+    <div class="page-wrapper">    
+<header class="top-0 z-50 sticky glass-engine">
+{{partial "test-header-2.html" .}}
+    </header>
+
+      {{ block "main" . }}{{ end }}
+      {{ partial "katy-o-cat.html" . }}
+      {{ partial "back-to-top.html" . }}
+      <footer>{{ partial "footer.html" . }}</footer>
+    </div>
+
+
+  </body>
+</html>

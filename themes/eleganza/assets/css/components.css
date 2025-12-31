@@ -1,0 +1,48 @@
+@reference "tailwindcss";
+@layer components {
+
+.footer-wrapper {
+}    
+.content-wrapper { 
+  @apply bg-gemini-50/90;
+  @apply p-4;
+  @apply absolute;
+  @apply flex flex-col mx-auto py-6 w-[99%] h-[95%];
+}
+.top-bar { 
+    @apply top-0 z-99 sticky flex justify-between items-center;
+    @apply mx-auto w-[95%] h-16;
+    @apply bg-midnight/90 backdrop-blur-md; 
+
+}
+.author-pic { 
+    @apply shadow-lg mx-auto rounded-full w-full;
+}
+.page-wrapper {
+  /* @apply inset-0 p-1 w-screen h-dvw;
+   @apply bg-[url('/images/tiger-tabby-bg.svg')] bg-[length:100%_100%] bg-repeat-y;*/
+  @apply bg-linear-to-b from-fire-engine to-halloween;
+  filter: blur(0.5px);
+  @apply rounded-4xl;
+}
+.services-wrapper {
+  @apply items-center gap-1 grid-flow-row wrap-anywhere;
+  @apply bg-linear-to-br
+    from-75% from-transparent
+    via-80% via-midnight/1
+    via-92% via-midnight/2
+    via-98% via-midnight/3
+    via-99% via-midnight/4
+    to-100% to-midnight/5
+    rounded-4xl;
+}
+.box-style{     
+    @apply shadow-lg md:shadow-xl lg:shadow-2xl;
+    @apply m-0.5 p-2;
+} 
+.feather-blend-overlay { 
+  @apply absolute inset-0 pointer-events-none;  
+  @apply from-95% from-transparent to-100% to-black mask-radial-at-center;
+ }
+
+}

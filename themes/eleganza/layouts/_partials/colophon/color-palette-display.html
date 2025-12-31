@@ -1,0 +1,46 @@
+{{ $colorFamilies := slice
+  (dict "name" "Deep Ink" "prefix" "deep-ink")
+  (dict "name" "Muted Clay" "prefix" "muted-clay")
+  (dict "name" "Sandalwood" "prefix" "sandalwood")
+  (dict "name" "Dusty Rose" "prefix" "dusty-rose")
+  (dict "name" "French Rose" "prefix" "french-rose")
+  (dict "name" "Palest Yellow" "prefix" "palest-yellow")
+  (dict "name" "Whisper Green" "prefix" "whisper-green")
+}}
+
+{{ $shades := slice "50" "100" "200" "300" "400" "500" "600" "700" "800" "900" "950" }}
+
+{{ $textColor := "text-deep-ink" }}
+{{ if eq .theme "dark" }}{{ $textColor = "text-dawn" }}{{ end }}
+
+{{ range $colorFamilies }}
+  <div class="space-y-2">
+    <h3 class="text-2xl font-heading {{ $textColor }}">{{ .name }}</h3>
+    <div class="flex flex-row overflow-x-auto rounded">
+      {{ range $shades }}
+        {{ $colorClass := printf "bg-%s-%s" $.prefix . }}
+        <div class="flex-shrink-0 w-28 h-28">
+          <div class="{{ $colorClass }} w-full h-20"></div>
+          <div class="p-2 text-sm text-center align-middle {{ $textColor }}">
+            <p class="font-bold">{{ . }}</p>
+          </div>
+        </div>
+      {{ end }}
+    </div>
+  </div>
+{{ end }}
+
+<!-- Standalone Colors -->
+<div class="space-y-2">
+  <h3 class="text-2xl font-heading {{ $textColor }}">Standalone</h3>
+  <div class="flex flex-row">
+    <div class="w-28 h-28">
+      <div class="w-full h-20 bg-dawn border"></div>
+      <div class="p-2 text-sm text-center  align-middle {{ $textColor }}"><p class="font-bold">Dawn</p></div>
+    </div>
+    <div class="w-28 h-28">
+      <div class="w-full h-20 bg-dusk border"></div>
+      <div class="p-2 text-sm text-center align-middle {{ $textColor }}"><p class="font-bold">Dusk</p></div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,37 @@
+{{ define "main" }}
+<div class="w-full space-y-12">
+  <h1 class="text-4xl font-bold font-heading">{{ .Title }}</h1>
+  <p>{{ .Content }}</p>
+
+  <!-- Heading Font -->
+  <div class="space-y-4">
+    <h2 class="text-3xl font-heading border-b pb-2">Heading Font (Raleway)</h2>
+    <h1 class="text-4xl font-bold font-heading">Heading 1: The quick brown fox jumps over the lazy dog.</h1>
+    <h2 class="text-3xl font-bold font-heading">Heading 2: The quick brown fox jumps over the lazy dog.</h2>
+    <h3 class="text-2xl font-bold font-heading">Heading 3: The quick brown fox jumps over the lazy dog.</h3>
+    <h4 class="text-xl font-bold font-heading">Heading 4: The quick brown fox jumps over the lazy dog.</h4>
+    <h5 class="text-lg font-bold font-heading">Heading 5: The quick brown fox jumps over the lazy dog.</h5>
+    <h6 class="text-base font-bold font-heading">Heading 6: The quick brown fox jumps over the lazy dog.</h6>
+  </div>
+
+  <!-- Normal Font -->
+  <div class="space-y-4">
+    <h2 class="text-3xl font-heading border-b pb-2">Normal Font (Lora)</h2>
+    <p class="font-normal text-xl">This is normal paragraph text. The quick brown fox jumps over the lazy dog.</p>
+    <p class="font-normal text-xl italic">This is italicized text.</p>
+    <p class="font-normal text-xl">This is an example of <sup>superscript</sup> text, often used for footnotes or exponents like 10<sup>3</sup>.</p>
+    <p class="font-normal text-xl">This is an example of <sub>subscript</sub> text, often used for chemical formulas like H<sub>2</sub>O.</p>
+    <div class="font-normal text-base">
+      <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+    </div>
+  </div>
+
+  <!-- Script Font -->
+  <div class="space-y-4">
+    <h2 class="text-3xl font-heading border-b pb-2">Script Font (Italianno)</h2>
+    <p class="font-script text-5xl">Aa</p>
+    <p class="font-script text-6xl">The quick brown fox jumps over the lazy dog.</p>
+  </div>
+
+</div>
+{{ end }}

@@ -1,0 +1,11 @@
+/* icon.html 
+displays an icon */
+{{ $icon := .icon | default "info" }}
+{{ $size := . | default "24" }}
+{{ $color := .color | default "currentColor" }}
+
+{{ $svg := resources.Get (printf "svg/%s" $icon)  }}
+
+{{ with $svg }}
+  {{ .Content | safeHTML }}
+{{ end }}

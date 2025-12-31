@@ -1,0 +1,99 @@
+{{/*
+    <div class="relative bg-midnight shadow-2xs shadow-900 shadow-inner mx-auto p-[1%] w-full h-20 md:h-24 overflow-visible text-stone-10 align-top">
+    
+    <div class="absolute inset-0 bg-radial-[at_30%_25%] from-transparent to-gemini-100/20"></div>
+    
+    <div class="z-10 absolute inset-0 pointer-events-none glass_surface"></div>
+
+    {{ $logo := resources.Get "svg/logo-catnip.svg" }}
+    {{ if $logo }}
+    <div class="z-20 absolute inset-0 flex items-center grid grid-auto-cols px-1">
+        <div class="mx-auto w-[90%] h-auto animate-refractive-logo logo-glass-wrap">
+            {{ $logo.Content | safeHTML }}
+        </div>
+    </div><div class="z-25 text-base md:text-lg text-right">{{.Site.Params.subtitle}}</div><div class="font-extrabold text-halloween text-right italic">{{.Site.Params.tagline}} </div>
+    
+    <div class="z-30 absolute inset-0 border border-white/10 rounded-xl rounded-t-lg rounded-b-2xl pointer-events-none glass-glint glint-polite">
+    </div>
+    {{ end }}
+
+</div>
+*/}}
+{{/*
+<div class="relative bg-midnight shadow-inner mx-auto mb-8 p-5 rounded-xl w-full h-auto min-h-24 overflow-visible">
+    
+    <div class="absolute inset-0 bg-radial-[at_30%_25%] from-transparent to-gemini-100/10 rounded-xl"></div>
+    <div class="z-10 absolute inset-0 rounded-xl pointer-events-none glass-surface"></div>
+
+    <div class="z-20 relative flex flex-col">
+        
+        <div class="flex justify-between items-end mb-1">
+            <div class="flex-shrink-0 animate-refractive-logo logo-glass-wrap">
+                <div class="w-60 md:w-80 h-auto">
+                    {{ $logo := resources.Get "svg/logo-catnip.svg" }}
+                    {{ $logo.Content | safeHTML }}
+                </div>
+            </div>
+
+            <div class="pb-2 text-right">
+                <p class="font-medium text-[10px] text-stone-400 md:text-xs uppercase leading-none tracking-[0.2em]">
+                    {{ .Site.Params.subtitle }}
+                </p>
+            </div>
+        </div>
+
+        <div class="flex justify-end pt-3 border-white/10 border-t w-full">
+            <p class="drop-shadow-[0_0_10px_rgba(255,127,0,0.4)] hover:drop-shadow-[0_0_15px_rgba(255,127,0,0.6)] font-extrabold text-halloween text-base md:text-xl italic tracking-tight transition-all">
+                {{ .Site.Params.tagline }}
+            </p>
+        </div>
+    </div>
+
+    <div class="z-30 absolute inset-0 border border-white/10 rounded-xl pointer-events-none glass-glint glint-polite"></div>
+</div>
+
+*/}}
+{{ $logo := resources.GetMatch  "logo-catnip.svg" }}
+
+<div class="top-0 relative sticky bg-black shadow-inner rounded-2xl ring-1 ring-white/5 w-full h-24 md:h-28 bg-[url({{.Site.Params.logo}})]">
+    <div class="z-10 w-full max-w-[280px] md:max-w-[340px] h-auto">
+        {{ with $logo }}
+          <div class="[&>svg]:w-full [&>svg]:h-auto">
+            {{ .Content | safeHTML }}
+          </div>
+        {{ end }}
+      </div>
+    
+    <div class="z-10 absolute inset-0 opacity-25 rounded-2xl pointer-events-none glass-surface"></div>
+
+    <div class="z-20 relative flex flex-col p-4 md:p-6 w-full">
+      
+      <div class="relative mb-1 w-full">
+        
+        <div class="w-fit animate-refractive-logo logo-glass-wrap">
+          <div class="w-full [&>svg]:w-full max-w-[260px] md:max-w-[340px] h-auto [&>svg]:h-auto">
+            {{ if $logo }}
+              {{ $logo.Content | safeHTML }}
+            {{ else }}
+              <span class="font-black text-halloween text-2xl italic uppercase tracking-tighter">Catio</span>
+            {{ end }}
+          </div>
+        </div>
+
+        <div class="right-0 bottom-0 absolute pr-1 pb-1 text-right pointer-events-none">
+          <p class="drop-shadow-md text-[9px] text-stone-400 md:text-xs uppercase leading-none tracking-[0.25em]">
+            {{ .Site.Params.subtitle }}
+          </p>
+        </div>
+      </div>
+
+      <div class="mt-2 pt-3 pb-1 border-white/10 border-t w-full text-center">
+        <p class="drop-shadow-[0_0_12px_rgba(255,127,0,0.5)] font-black text-halloween text-sm md:text-lg italic leading-none">
+          {{ .Site.Params.tagline }}
+        </p>
+      </div>
+
+    </div>
+
+    <div class="z-30 absolute inset-0 border border-white/20 rounded-2xl pointer-events-none glass-glint glint-polite"></div>
+</div>

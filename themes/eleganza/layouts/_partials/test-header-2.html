@@ -1,0 +1,10 @@
+<a href="/">
+{{ if $logo := resources.Get .Site.Params.logo }}
+<div class="hidden md:block">
+          {{ $logo.Content | safeHTML }}
+</div>
+          {{ else }}
+          <h1 class="text-shadow-midnight-50 text-black text-xl md:text-2xl lg:text-4xl text-left">{{.Site.Title}}</h1>
+          {{ end }}
+</a>
+{{ partial "menu.html" (dict "menuID" "main" "pageID" .) }}

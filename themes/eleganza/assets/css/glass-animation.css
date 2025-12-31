@@ -1,0 +1,39 @@
+
+/* animation.css v1.3 */
+@theme {
+  /* Angle/Intensity Scale */
+  --angle-xs: 1deg; --angle-sm: 3deg; --angle-md: 8deg; --angle-lg: 10deg; --angle-xl: 12deg; --angle-2xl: 15deg;
+  
+  /* Speed/Duration Scale */
+  --speed-xs: 60s; --speed-sm: 30s; --speed-md: 15s; --speed-lg: 8s; --speed-xl: 5s; --speed-xf: 3s; --speed-2xf: 2s; --speed-3xf: 1.5s; --speed-4xf: 1s;
+
+  /* Animation Defaults */
+  --glow-opacity-min: 0.5;
+  --glow-blur-end: 8px;
+
+  @keyframes sway {
+    0%, 100% { transform: rotate(calc(var(--current-angle, 8deg) * -1)); }
+    50% { transform: rotate(var(--current-angle, 8deg)); }
+  }
+
+  @keyframes glow {
+    0%, 100% { opacity: var(--glow-opacity-min); filter: brightness(100%); }
+    50% { opacity: 1; filter: brightness(120%) blur(var(--glow-blur-end)); }
+  }
+}
+
+/* Combinatorial Engine */
+@utility sway-*-* {
+  --current-angle: var(--angle-$(1));
+  --current-speed: var(--speed-$(2));
+  animation: sway var(--current-speed) ease-in-out infinite;
+}
+
+@utility glow-*-* {
+  --current-scale: calc(1 + (parseInt(var(--angle-$(1))) / 500)); 
+  --current-speed: var(--speed-$(2));
+  animation: glow var(--current-speed) ease-in-out infinite;
+}
+
+@utility spin-* { animation: spin var(--speed-$(1)) linear infinite; }
+@utility sweep-* { animation: sweep var(--speed-$(1)) infinite ease-in-out; }

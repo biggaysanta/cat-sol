@@ -1,0 +1,16 @@
+{{ with resources.Get "css/main.css" }}
+  {{ warnf "main.css found"}}
+  {{ $opts := dict "minify" (not hugo.IsDevelopment) }}
+  {{ with . | css.TailwindCSS $opts }}
+    {{ warnf "tailwindcss invoked"}}
+
+      {{warnf "development mode"}}
+      
+      <link rel="stylesheet" href="{{ .RelPermalink }}" >
+      {{ with . | fingerprint }}
+      {{ warnf "fingerprint invoked"}}
+        <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
+    {{ end }}
+  {{ end }}
+{{ end }}
+

@@ -1,0 +1,6 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+@import "./theme.css";
+@import "./base.css";
+@import "./components.css";
+@import "./glassmorphism.css";

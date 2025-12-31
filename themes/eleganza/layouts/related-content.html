@@ -1,0 +1,16 @@
+<div class="sidebar dark:dark-sidebar">
+    <h3
+        class="mb-4 pb-2 border-b-2 font-heading font-bold text-xl">
+        Some Related Content...</h3>
+
+        <ul class="space-y-2">
+        {{ with site.RegularPages}}
+            {{ $related_pages := where site.RegularPages.Related . | first 5 }}
+        {{ range $related_pages }}
+                <li>
+                    <a href="{{ .RelPermalink }}" class="text-deep-ink dark:text-dawn hover:decoration-dotted hover:underline">{{ .Title }}</a>
+                </li>
+        {{ end }}
+        </ul>
+        {{end}}
+</div>

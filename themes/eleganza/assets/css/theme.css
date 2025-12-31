@@ -1,0 +1,46 @@
+/* theme.css
+This file defines the custom colors and assigns a main color variable */
+@reference "tailwindcss";;
+@theme {
+
+
+    --color-halloween-50: oklch(0.96 0.02 43);
+    --color-halloween-100: oklch(0.9 0.06 43);
+    --color-halloween-200: oklch(0.84 0.1 43);
+    --color-halloween-300: oklch(0.78 0.14 43);
+    --color-halloween-400: oklch(0.72 0.19 43);
+    --color-halloween-500: oklch(0.7 0.2 43);
+    --color-halloween-600: oklch(0.6 0.17 43);
+    --color-halloween-700: oklch(0.5 0.14 43);
+    --color-halloween-800: oklch(0.4 0.11 43);
+    --color-halloween-900: oklch(0.29 0.08 43);
+    --color-halloween-950: oklch(0.17 0.04 43);
+
+    --color-gemini-50: oklch(0.97 0.01 270);
+    --color-gemini-100: oklch(0.94 0.02 270);
+    --color-gemini-200: oklch(0.88 0.04 270);
+    --color-gemini-300: oklch(0.81 0.06 270);
+    --color-gemini-400: oklch(0.74 0.08 270);
+    --color-gemini-500: oklch(0.67 0.1 270);
+    --color-gemini-600: oklch(0.6 0.09 270);
+    --color-gemini-700: oklch(0.52 0.08 270);
+    --color-gemini-800: oklch(0.43 0.06 270);
+    --color-gemini-900: oklch(0.34 0.04 270);
+    --color-gemini-950: oklch(0.25 0.03 270);
+
+    --color-fire-engine-50: oklch(0.98 0.03 29);
+    --color-fire-engine-100: oklch(0.93 0.06 29);
+    --color-fire-engine-200: oklch(0.86 0.11 29);
+    --color-fire-engine-300: oklch(0.79 0.16 29);
+    --color-fire-engine-400: oklch(0.72 0.21 29);
+    --color-fire-engine-500: oklch(0.65 0.23 29);
+    --color-fire-engine-600: oklch(0.58 0.2 29);
+    --color-fire-engine-700: oklch(0.51 0.17 29);
+    --color-fire-engine-800: oklch(0.43 0.13 29);
+    --color-fire-engine-900: oklch(0.35 0.09 29);
+
+    --color-halloween: var(--color-halloween-500);
+    --color-fire-engine: var(--color-fire-engine-500);
+    --color-midnight: var(--color-gemini-950);
+  
+}

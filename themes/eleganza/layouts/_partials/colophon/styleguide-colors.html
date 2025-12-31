@@ -1,0 +1,22 @@
+{{ define "main" }}
+<div class="w-full">
+  <div class="text-center mb-12">
+    <h1 class="text-4xl font-bold font-heading">{{ .Title }}</h1>
+    <p class="mt-2">{{ .Content }}</p>
+  </div>
+
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+    <!-- Light Mode Column -->
+    <div class="space-y-8">
+      <h2 class="text-3xl font-heading text-center">Light Mode</h2>
+      {{ partial "color-palette-display.html" (dict "context" . "theme" "light") }}
+    </div>
+
+    <!-- Dark Mode Column -->
+    <div class="dark bg-dusk p-8 rounded-lg space-y-8">
+      <h2 class="text-3xl font-heading text-center text-dawn">Dark Mode</h2>
+      {{ partial "color-palette-display.html" (dict "context" . "theme" "dark") }}
+    </div>
+  </div>
+</div>
+{{ end }}

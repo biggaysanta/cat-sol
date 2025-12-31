@@ -1,0 +1,28 @@
+{{ define "main" }}
+<div class="w-full">
+    <h1 class="text-4xl text-center font-bold font-heading mb-8">Theme Color Palette (Sorted by Lightness)</h1>
+
+    <div class="flex flex-col md:flex-row w-full min-h-screen rounded-lg overflow-hidden shadow-lg">
+        {{/* Define the colors with their lightness (L) value for sorting */}}
+        {{ $colors := slice
+            (dict "name" "dawn"          "lightness" 1.00 "textColor" "text-deep-ink")
+            (dict "name" "palest-yellow" "lightness" 0.99 "textColor" "text-deep-ink")
+            (dict "name" "whisper-green" "lightness" 0.99 "textColor" "text-deep-ink")
+            (dict "name" "dusty-rose"    "lightness" 0.94 "textColor" "text-deep-ink")
+            (dict "name" "french-rose"   "lightness" 0.85 "textColor" "text-deep-ink")
+            (dict "name" "muted-clay"    "lightness" 0.77 "textColor" "text-deep-ink")
+            (dict "name" "sandalwood"    "lightness" 0.70 "textColor" "text-deep-ink")
+            (dict "name" "deep-ink"      "lightness" 0.12 "textColor" "text-dawn")
+            (dict "name" "dusk"          "lightness" 0.00 "textColor" "text-dawn")
+        }}
+
+        {{/* Sort the colors by lightness, descending */}}
+        {{ range sort $colors "lightness" "asc" }}
+            <div class="flex-1 bg-{{ .name }} flex items-center justify-center p-4">
+                <span class="font-bold {{ .textColor }}">{{ .name }}</span>
+            </div>
+        {{ end }}
+
+    </div>
+</div>
+{{ end }}

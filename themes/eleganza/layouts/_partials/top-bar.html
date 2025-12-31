@@ -1,0 +1,15 @@
+<div id="top-bar-wrapper"class="top-0 z-100 sticky flex grid grid-cols-3 bg-linear-to-b from-0% from-halloween to-100% to-fire-engine shadow-lg mx-[5%] px-[5%] w-[95%] text-white" >
+    <div id="logo" class="flex">
+        <img src="{{ site.Params.logo}}" class="flex-1 bg-blue-950 border border-t-blue-59 hover:border-t-blue-900 border-r-blue-900 hover:border-r-blue-50 border-b-blue-900 hover:border-b-blue-50 border-l-blue-50 hover:border-l-blue-900 rounded-full w-[32px] h-8 hover:translate-y-0.5" alt="{{site.Title}}"> 
+    </div>
+    <div id="site title" class= "flex-2"><h1>{{ site.Title}}</h1></div>
+    <div id="row-1-wrapper" class="flex justify-between items-center p-4 text-xs">
+        
+        <div id="middle-wrapper" class="flex-1 text-center">
+            {{ site.Params.address}}
+        </div>
+        <div id="right-wrapper" class="flex-1 text-right btn">
+                {{ partial "icon.html" (dict "icon" "sms") }}{{ site.Params.phone}}{{ partial "icon.html" (dict "icon" "call")}}
+        </div>
+    </div>
+</div>

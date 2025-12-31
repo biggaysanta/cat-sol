@@ -1,0 +1,190 @@
+@theme {
+  /* 1. Variants
+  
+  BLUR SCALE*/
+  --glass-blur: ('none', 'xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl', 'full');
+  
+ 
+/* BRIGHTNESS SCALE*/
+  --glass-brightness: ('80', '90', '95', '97', '99', '100', '105', '110', '120', '130', '140', '150');
+ 
+  /* Intensity/Angle Scale */
+  --angle-xs: 1deg; --angle-sm: 3deg; --angle-md: 8deg; --angle-lg: 10deg; --angle-xl: 12deg; --angle-2xl: 15deg;
+
+  /* Speed/Duration Scale */
+  --speed-xs: 60s; --speed-sm: 30s; --speed-md: 15s; --speed-lg: 8s; --speed-xl: 5s; --speed-xf: 3s; --speed-2xf: 2s; --speed-3xf: 1.5s; --speed-4xf: 1s;
+
+ 
+  /* 3. KEYFRAMES 
+     Note: Using var(--current-angle) and var(--current-speed) for composition.
+
+  */
+ 
+  @keyframes sway {
+    0%, 100% { transform: rotate(calc(var(--current-angle, 8deg) * -1)); }
+    50% { transform: rotate(var(--current-angle, 8deg)); }
+  }
+
+  @keyframes glow {
+    0%, 100% { opacity: var(--glow-opacity-min, 0.5); filter: brightness(100%); }
+    50% { opacity: 1; filter: brightness(120%) blur(var(--glow-blur-end, 8px)); }
+  }
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  /* Shared path/shimmer keyframes */
+  @keyframes refract {
+    0% { transform: skewX(-25deg) translateX(-150%); }
+    20% { transform: skewX(-25deg) translateX(250%); }
+    100% { transform: skewX(-25deg) translateX(-150%); }
+  }
+  @keyframes sweep {
+    0% { transform: translateX(-150%); }
+    50% { transform: translateX(250%); }
+    100% { transform: translateX(-150%); }
+  }
+}
+
+/* 1. THE CORE EFFECTS */
+/* Use these to trigger the animation logic */
+@utility sway {
+  --current-angle: var(--angle-val, var(--angle-md));
+  --current-speed: var(--speed-val, var(--speed-md));
+  animation: sway var(--current-speed) ease-in-out infinite;
+}
+
+@utility glow {
+  --current-scale: calc(1 + (parseInt(var(--angle-val, var(--angle-md))) / 500)); 
+  --current-speed: var(--speed-val, var(--speed-md));
+  animation: glow var(--current-speed) ease-in-out infinite;
+}
+
+@utility spin { animation: spin var(--speed-val, var(--speed-md)) linear infinite; }
+@utility sweep { animation: sweep var(--speed-val, var(--speed-md)) infinite ease-in-out; }
+
+@utility refract { animation: sweep var(--speed-val, var(--speed-md)) infinite ease-in-out; }
+
+/* 2. THE MODIFIERS */
+/* Use these to set the variables that the effects consume */
+@utility intensity-* { --angle-val: var(--angle-$(1)); }
+@utility speed-* { --speed-val: var(--speed-$(1)); }
+
+
+
+
+
+/* ==========================================================================
+   5. REFACTORED PATH UTILITIES (Refract & Sweep)
+   Syntax: [effect]-[speed_suffix]
+   Use Case: <div class="refract-4xf"> for rapid light flashes.
+   ========================================================================== */
+
+
+/* ==========================================================================
+   6. ZIG-ZAG ENGINE (Coordinates)
+   Syntax: zigzag-[speed_suffix] [--zigzag-path:'M...']
+   ========================================================================== */
+@utility zigzag {
+  animation: follow-path var(--speed-var) infinite linear;
+  offset-path: path(var(--zigzag-path));
+  offset-rotate: auto;
+}
+
+/* ==========================================================================
+   7. TW SCALE INTEGRATION (Grow/Shrink)
+   Allows native 'scale-95' or 'scale-110' to affect glow via variables.
+   ========================================================================== */
+@utility glow-sync {
+  --current-scale: var(--tw-scale-x);
+}
+
+/* glassmorphism.css v1.3 */
+@utility glass-engine {
+  /* The "Shell" Logic remains via @apply */
+  @apply glass-wrapper;
+
+  background: 
+    /* 1. KEYLIGHT (Top) - High Chroma highlight */
+    radial-gradient(at 25% 25%, 
+      var(--color-gemini-50) 0%, 
+      oklch(from var(--color-gemini-50) l c h / 0.9) 2%, 
+      oklch(from var(--color-gemini-50) l c h / 0.3) 5%, 
+      oklch(from var(--color-gemini-50) l c h / 0.05) 20%, 
+      oklch(from var(--color-midnight) l c h / 0.4) 100%),
+    
+    /* 2. MIDLIGHT - Broad lighting */
+    linear-gradient(to top right, 
+      oklch(from var(--color-gemini-50) l c h / 0.8) 75%, 
+      transparent 100%),
+    
+    /* 3. DIMLIGHT - Lower anchor */
+    radial-gradient(at 25% 75%, 
+      oklch(from var(--color-gemini-50) l c h / 0.4) 0%, 
+      transparent 100%),
+    
+    /* 4. LOWLIGHT (Bottom) - Deep shadow */
+    linear-gradient(to bottom right, 
+      transparent 75%, 
+      oklch(from var(--color-midnight) l c h / 0.05) 100%);
+}
+/* THE CLOCHE: Optical Shell */
+@utility glass-wrapper {
+  @apply backdrop-blur-xs;
+  @apply backdrop-brightness-90;
+  @apply inset-[0.5] inset-ring-[0.5] inset-ring-gemini-50/50; 
+  @apply border-t-gemini-50/90 border-r-gemini-600/90 border-b-gemini-600/90 border-l-gemini-50/90 border rounded-4xl;
+
+  /* The "Float": Standard drop shadow */
+  @apply shadow-midnight drop-shadow-md;
+  @apply hover:brightness-105
+}
+
+/* THE KEY-LIGHT: Surface Faceting (Gradients) 
+@utility glass-key-light {
+  @apply bg-radial-[at_25%_25%] 
+         from-0% from-gemini-50 
+         via-2% from-gemini-50/90 
+         via-5% via-gemini-50/30 
+         via-20% via-gemini-50/5 
+         to-100% to-midnight/40;
+@apply rounded-4xl;
+}
+
+
+@utility glass-low-light {
+  @apply bg-linear-to-br
+  from-75% from-transparent
+  to-midnight/5 via-99% via-midnight/4 via-98% via-midnight/3 via-92% via-midnight/2 via-80% via-midnight/1
+  to-100%;
+  @apply rounded-4xl;}
+
+@utility glass-mid-light {
+    @apply bg-linear-to-tr 
+    from-75% from-gemini-50/80
+    via-82% 
+    from-gemini-50/70 via-87% via-gemini-50/20 via-92% via-gemini-50/8
+    via-97% via-gemini-50/3  to-100%  to-transparent rounded-4xl;}
+  
+@utility glass-dim-light {
+      @apply bg-radial-[at_25%_75%]
+      from-0%
+      from-gemini-50/40  via-1% via-gemini-50/30 via-2% via-gemini-50/20 via-8% via-gemini-50/10 via-20% via-gemini-50/1
+      to-100% to-transparent rounded-4xl;}
+*/
+      /* THE PHYSICS: Haptic & Visual Feedback */
+      @utility button-action {
+        @apply transition-all duration-100 ease-out cursor-pointer;
+        
+        /* Hover: Increase brightness on the cloche */
+        @apply hover:brightness-110;
+        
+        /* Active: Physical translation (The "Press") */
+        @apply active:scale-[0.97] active:translate-x-0.5 active:translate-y-0.5;
+        @apply active:brightness-95;
+      }

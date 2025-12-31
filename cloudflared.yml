@@ -1,0 +1,7 @@
+tunnel: catio-dev
+credentials-file: .cloudflared/catio-dev.json
+
+ingress:
+  - hostname: <URL>
+    service: http://localhost:5173
+  - service: http_status:404

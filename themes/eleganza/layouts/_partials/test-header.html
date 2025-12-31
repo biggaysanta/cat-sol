@@ -1,0 +1,25 @@
+<div class="grid grid-cols-12 grid-rows-auto gap-2">
+
+    <div class="col-span-3 row-span-3 flex items-center justify-center">
+        <img src="{{ .Site.Params.logo | relURL }}" 
+             class="bg-blue-950 border-t-blue-500 hover:border-t-blue-900 border-r-blue-900 hover:border-r-blue-500 border-b-blue-900 hover:border-b-blue-500 border-l-blue-500 hover:border-l-blue-900 border rounded-full w-full h-auto transition-transform hover:translate-y-0.5" 
+             alt="{{ .Site.Title }}">
+    </div>
+
+    <div class="col-span-9 row-span-3 flex items-center justify-center text-2xl font-bold">
+        {{ .Site.Title }}
+    </div>
+
+    <div class="col-span-12 flex items-center justify-center">
+        {{ .Site.Params.service_area }}
+    </div>
+    
+    <div class="col-span-12 flex items-center justify-center italic">
+        {{ .Site.Params.tagline }}
+    </div>
+    
+    <div class="col-span-12 flex justify-center md:col-span-3">
+        {{ .Site.Params.phone }}
+    </div>
+
+</div>

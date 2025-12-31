@@ -1,0 +1,4 @@
+{{ $logo := resources.Get .Site.Params.logo}}
+{{ if $logo }}
+<div class="relative bg-midnight w-full"> <div class="absolute bg-[url(svg/logo-catnip.svg)]"></div> </div><div class=""><p class="right-0 bottom-0 z-10 absolute drop-shadow-gemini-800/29 font-extralight text-sky-300 text-right">{{ .Site.Params.subtitle }}</p></div>
+{{ end }}

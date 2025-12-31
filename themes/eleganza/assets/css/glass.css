@@ -1,0 +1,70 @@
+/* glass engine v0.4.4
+  creates variables, components, utilities, and animations to create glassmorphism effects */
+/* @reference "tailwindcss";*/
+
+@theme {
+    /* 1. variants */
+    --glass-blur: ('none', 'xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl', 'full');
+    --glass-brightness: ('80', '90', '95', '97', '99', '100', '105', '110', '120', '130', '140', '150');
+   
+     /* 2. KEYFRAMES */
+        
+     
+   
+     /* 3. ANIMATION TOKENS */
+     --animation-rotate-celestial: rotate 60s linear infinite;
+     --animation-glow-pulse: pulse 10s ease-in-out infinite;
+     --animation-shimmer: shimmer 12s infinite ease-in-out;
+     --animation-refract: refract-shimmer 8s infinite ease-in-out;
+
+     @keyframes refractive-shimmer {
+       0% { @apply skew-x-[-25deg] translate-x-[-150%]; }
+       20% { @apply skew-x-[-25deg] translate-x-[250%]; }
+       100% { @apply skew-x-[-25deg] translate-x-[-150%]; }
+     }
+   
+     
+   }
+@utility glass {
+  @apply border-2 border-gemini-50/50;    
+  @apply backdrop-blur-xs;
+  @apply backdrop-brightness-99;
+  @apply rounded-4xl;
+  @apply drop-shadow-midnight/40;
+  @apply hover:brightness-110;
+  @apply drop-shadow-xl;
+  @apply inset-ring-[0.5] inset-ring-gemini-50;
+  @apply bg-radial-[at_25%_25%]
+  from-0% from-gemini-50
+  via-2% from-gemini-50/90 
+  via-5% via-gemini-50/30 
+  via-8% via-gemini-50/15
+  via-20% via-gemini-50/5 
+  to-100%  to-midnight/40;
+  }
+
+@utility glass-low-light {
+  @apply bg-linear-to-br
+  from-75%
+  to-midnight/5 via-99% via-midnight/4 via-98% via-midnight/3 via-92% via-midnight/2 via-80% via-midnight/1
+  to-100% from-transparent
+  rounded-4xl;}
+
+@utility glass-mid-light {
+    @apply bg-linear-to-tr 
+    from-75% from-gemini-50/80
+    via-82% 
+    from-gemini-50/70 via-87% via-gemini-50/20 via-92% via-gemini-50/8
+    via-97% via-gemini-50/3  to-100%  to-transparent rounded-4xl;}
+  
+@utility glass-dim-light {
+      @apply bg-radial-[at_25%_75%]
+      from-0%
+      from-gemini-50/40  via-1% via-gemini-50/30 via-2% via-gemini-50/20 via-8% via-gemini-50/10 via-20% via-gemini-50/1
+      to-100% to-transparent
+      rounded-4xl;}
+     
+   /* ==========================================================================
+      CORE SURFACE UTILITIES
+      ========================================================================== */
+   

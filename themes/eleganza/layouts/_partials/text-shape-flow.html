@@ -1,0 +1,37 @@
+{{/* Usage: 
+  partial "shape-flow.html" (dict "images" (slice "cat-left.png" "cat-right.png") "Content" .Content) 
+*/}}
+
+<div class="flow-root relative px-4 w-full">
+    {{ $img := resources.Get "tiger-right.png" }}
+    {{ $content := .content }}
+    {{ if $img }}
+    warnf("image found: %s", $img.RelPermalink)
+    
+      <img 
+        src="{{ .RelPermalink }}" 
+        class="h-auto w-[40%] md:w-1/3 mb-4 
+        [shape-outside:url('{{ .RelPermalink }}')] 
+        [shape-image-threshold:0.1] 
+        [shape-margin:1rem] 
+        object-contain"
+        alt="Cat Silhouette"
+      >
+    {{ else }}
+    warnf("image not found: %s","tiger-right")
+      {{/* We use a simple logic: if the filename contains 'left', float left. 
+         Otherwise, default to float right. Or you can use a simple index toggle.
+      */}}
+    {{ end }}
+    {{with $content }}
+<div class="text-stone-300 text-base md:text-lg leading-relaxed prose-none">
+    {{ . | safeHTML }}
+</div>
+{{ end }}
+</div>
+
+{{/* 
+{{ if in .Name "left" }} float-left mr-2 
+{{ else }} float-right mr-2 {{ end }} 
+
+*/}}

@@ -1,0 +1,12 @@
+<!-- layouts/partials/placeholder.html 
+usage: partial "placeholder.html" (dict "width" "1920px" "height" "1080px")
+
+returns a gray div in those dimensions you can use for PLaceholder prototyping.
+
+-->
+
+{{ $width := .width | default "100px" }}
+{{ $height := .height | default "50px" }}
+
+<div class="bg-gray-200 border w-[{{ $width }}] h-[{{ $height }}] border-emerald-500">
+</div>

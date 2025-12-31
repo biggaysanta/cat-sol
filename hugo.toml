@@ -1,3 +1,55 @@
-baseURL = 'https://example.org/'
+baseURL = 'http://catiosolutions.org/'
 languageCode = 'en-us'
-title = 'My New Hugo Site'
+title = 'Catio Solutions'
+theme = 'eleganza'
+[params]
+subtitle = 'Custom Cat Enclosures'
+tagline = 'We Bring the Inside Out!'
+logo = 'images/logo.svg'
+logo-alt = 'catio solutions logo'
+phone = '+1-916-696-1776'
+bind = '0.0.0.0'
+
+[[menu.main]]
+name="Home"
+pageRef ="/"
+weight=10
+[menu.main.params]
+icon="home.svg"
+color="primary"
+
+[[menu.main]]
+name="Gallery"
+pageRef ="/gallery"
+weight=60
+[menu.main.params]
+icon="love-cat-paw.svg"
+
+[[menu.main]]
+name="What we Do"
+pageRef ="/services"
+weight=20
+[menu.main.params]
+icon = "saw.svg"
+
+
+[[menu.main]]
+name="Contact Us"
+pageRef ="/contact"
+weight=30
+[menu.main.params]
+icon="phone.svg"
+
+[[menu.main]]
+name="Blog"
+pageRef ="/blog"
+weight=40
+[menu.main.params]
+icon="blog.svg"
+
+[[menu.main]]
+name="About Us"
+pageRef ="/about"
+weight=50
+[menu.main.params]
+icon="info.svg"

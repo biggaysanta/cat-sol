@@ -1,0 +1,13 @@
+
+<div id="logo and title" class="flex grid md:grid-flow-row grid-flow-col bg-red-400 border rounded-2xl w-full .">
+    <div class="top-0 absolute"><img src="{{ site.Params.logo }}"></div>
+    <div id="header-text" class="grid-rows-3 grid-row-subgrid col-span-2 my-auto h-full">
+        <h1 class="">{{ site.Title }}</h1>
+        <h2>{{ .Site.Params.subtitle }}</h2>
+        <p class="text-right"> {{.Site.Params.Tagline}} </p>
+</div>
+
+</div>
+<div id="menu-wrapper" class="flex w-full" class="bg-white">
+{{ partial "menu.html" (dict "menuID" "main" "page" .) }}
+</div>
